@@ -13,11 +13,6 @@ java {
     }
 }
 
-repositories {
-    maven { url = uri("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/") }
-    // mavenCentral()
-}
-
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-mail")
