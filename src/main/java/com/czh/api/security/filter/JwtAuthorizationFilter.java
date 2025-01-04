@@ -2,10 +2,14 @@ package com.czh.api.security.filter;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.function.Function;
 
 import com.czh.api.security.config.SecurityConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.AntPathRequestMatcherProvider;
 import org.springframework.lang.NonNull;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -29,9 +33,11 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         System.out.println("jwt auth  -->" + request.getRequestURI());
 
-        for (String match : SecurityConfiguration.writeList) {
-            // TODO if match skip authorization
-            if (false) {
+        AntPathRequestMatcherProvider provider = new AntPathRequestMatcherProvider(s -> s);
+
+        for (String pattern : SecurityConfiguration.writeList) {
+            RequestMatcher requestMatcher = provider.getRequestMatcher(pattern);
+            if (requestMatcher.matches(request)) {
                 filterChain.doFilter(request, response);
                 return;
             }
