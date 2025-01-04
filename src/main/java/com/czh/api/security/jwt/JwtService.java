@@ -20,7 +20,8 @@ public class JwtService {
         String compact = Jwts.builder()
                 .subject(JSON.toJSONString(currentUser))
                 .signWith(secretKey)
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
+//                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60))
                 .compact();
         return compact;
     }

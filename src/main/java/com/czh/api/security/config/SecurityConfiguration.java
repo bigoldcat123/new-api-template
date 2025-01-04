@@ -30,7 +30,7 @@ import com.czh.api.security.provider.MyDaoAuthenticationProvider;
 public class SecurityConfiguration {
 
     //TODO add other whitelist
-    String [] writeList = {"/ws","/mailcode"};
+    public static final String [] writeList = {"/ws","/mailcode","/test"};
     @Bean
     public AuthenticationManager authenticationManager(
             MyDaoAuthenticationProvider myDaoAuthenticationProvider,

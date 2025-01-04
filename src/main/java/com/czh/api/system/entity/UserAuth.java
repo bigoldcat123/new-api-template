@@ -41,29 +41,6 @@ public class UserAuth implements Serializable {
     @TableField("psw")
     private String password;
 
-    /**
-     * 邮箱
-     */
-    @TableField("_name")
-    private String _name;
-
-    @TableField("sex")
-    private String sex;
-    /**
-     * 更新事件
-     */
-    @TableField("companyID")
-    private String companyID;
-
-    @TableField("_position")
-    private String position;
-
-    @TableField("phone")
-    private String phone;
-
-
-    @TableField("priv")
-    private String priv;
 
     public CurrentUser toCurrentUser() {
         CurrentUser currentUser = new CurrentUser();

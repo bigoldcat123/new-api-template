@@ -1,7 +1,9 @@
 package com.czh.api.security.filter;
 
 import java.io.IOException;
+import java.util.Arrays;
 
+import com.czh.api.security.config.SecurityConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
@@ -25,6 +27,16 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain)
             throws ServletException, IOException {
+        System.out.println("jwt auth  -->" + request.getRequestURI());
+
+        for (String match : SecurityConfiguration.writeList) {
+            // TODO if match skip authorization
+            if (false) {
+                filterChain.doFilter(request, response);
+                return;
+            }
+        }
+
         String jwttokenString = request.getHeader("Authorization");
         if (jwttokenString != null && jwttokenString.startsWith("Bearer ")) {
             jwttokenString = jwttokenString.replace("Bearer ", "");

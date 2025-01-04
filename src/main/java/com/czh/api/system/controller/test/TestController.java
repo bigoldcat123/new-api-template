@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/test")
 public class TestController {
     
-    @GetMapping("test")
+    @GetMapping("")
     public String teString(@RequestParam(required = false) String param) {
-        return new String("abc");
+        return new String("test");
     }
     
 }
